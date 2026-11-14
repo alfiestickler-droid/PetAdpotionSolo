@@ -1,4 +1,6 @@
 ﻿using PetAdpotionSolo;
+using System.Xml.Linq;
+using System.Linq;
 
 bool exit = false;
 
@@ -41,7 +43,7 @@ while (!exit)
             MenuOrExit();
             break;
         case 6:
-            MenuOrExit();
+            Exit();
             break;
     }
 }
@@ -133,4 +135,31 @@ void CreateNewPet()
     Pet newPet = new Pet(newPetName, newPetSpecies);
 
     firstShelter.AddPet(newPet);
+}
+
+void FeedAPet()
+{
+    Console.WriteLine("Please enter the name of the pet you want to feed :");
+    string petBeingFed = Console.ReadLine();
+
+    foreach(Pet pet in firstShelter.pets)
+    {
+        if (petBeingFed?.Trim().ToLower() == pet.Name.Trim().ToLower())
+        {
+            Console.WriteLine($"{petBeingFed} is now being fed");
+            
+
+            Console.WriteLine($"{petBeingFed}'s hunger")
+        }
+    }
+
+}
+
+//PlayWithPet
+
+//AdoptAPet
+
+void Exit()
+{
+    exit = true;
 }

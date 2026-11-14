@@ -2,7 +2,7 @@
 {
     class Shelter
     {
-        private List<Pet> pets = new List<Pet>();
+        public List<Pet> pets = new List<Pet>();
 
         public void AddPet(Pet newPet)
         {
