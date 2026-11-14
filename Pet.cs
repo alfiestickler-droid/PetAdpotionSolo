@@ -8,8 +8,8 @@ namespace PetAdpotionSolo
     {
         public string Name { get; set; }
         public string Species { get; set; }
-        public int Hunger { get; set; }
-        public int Happiness { get; set; }
+        public int Hunger { get; private set; } //private set turns it into what is basically read only outside the class.
+        public int Happiness { get; private set; }
 
         //constructors
 
