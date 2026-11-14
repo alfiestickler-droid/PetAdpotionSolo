@@ -52,7 +52,7 @@ namespace PetAdpotionSolo
 
         public string GetStatus()
         {
-            return $"The {Species} {Name} hunger is : {Hunger} and happiness is : {Happiness}";
+            return $"The {Species} : {Name}'s hunger is : {Hunger} and happiness is : {Happiness}";
         }
     }
 }
