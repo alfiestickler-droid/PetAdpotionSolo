@@ -11,10 +11,10 @@ Pet Pushkins = new Pet("Pushkins", "indoor cat");
 Pet Bibble = new Pet("Bibble", "indoor cat");
 
 firstShelter.AddPet(Lottie);
-firstShelter.AddPet(Lottie);
-firstShelter.AddPet(Lottie);
-firstShelter.AddPet(Lottie);
-firstShelter.AddPet(Lottie);
+firstShelter.AddPet(Blue);
+firstShelter.AddPet(Lulu);
+firstShelter.AddPet(Pushkins);
+firstShelter.AddPet(Bibble);
 
 //Main
 while (!exit)
@@ -28,16 +28,20 @@ while (!exit)
             MenuOrExit();
             break;
         case 2:
-            //firstShelter.AddPet();
+            CreateNewPet();
             MenuOrExit();
             break;
         case 3:
+            MenuOrExit();
             break;
         case 4:
+            MenuOrExit();
             break;
         case 5:
+            MenuOrExit();
             break;
         case 6:
+            MenuOrExit();
             break;
     }
 }
@@ -106,4 +110,27 @@ void MenuOrExit()
             exit = true;
         }
     }
+}
+
+void CreateNewPet()
+{
+    Console.WriteLine("Please enter pet's name :");
+    string newPetName = Console.ReadLine();
+    while (string.IsNullOrWhiteSpace(newPetName))
+    {
+        Console.WriteLine("Nothing entered, please enter name for the new pet : ");
+        newPetName = Console.ReadLine();
+    }
+
+    Console.WriteLine("Please enter pet's species");
+    string newPetSpecies = Console.ReadLine();
+    while (string.IsNullOrWhiteSpace(newPetSpecies))
+    {
+        Console.WriteLine("Nothing entered, please enter name for the new pet : ");
+        newPetSpecies = Console.ReadLine();
+    }
+
+    Pet newPet = new Pet(newPetName, newPetSpecies);
+
+    firstShelter.AddPet(newPet);
 }
