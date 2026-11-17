@@ -7,70 +7,77 @@ Shelter secondShelter = new Shelter("Crazy animalz Shelter");
 
 Shelter shelterSelection = firstShelter;
 
+
+#region firstShelter pets
 Pet Lottie = new Pet("Lottie", "King Charles Caveler");
 Pet Blue = new Pet("Blue", "Huskey");
 Pet Lulu = new Pet("Lulu", "unknown");
 Pet Pushkins = new Pet("Pushkins", "indoor cat");
 Pet Bibble = new Pet("Bibble", "indoor cat");
 
+firstShelter.AddPet(Lottie);
+firstShelter.AddPet(Blue);
+firstShelter.AddPet(Lulu);
+firstShelter.AddPet(Pushkins);
+firstShelter.AddPet(Bibble);
+#endregion
+
+#region secondShelter pets
 Pet Mitsy = new Pet("Mitsy", "Greyhound");
 Pet Murphy = new Pet("Murphy", "Labrador");
 Pet Jiggy = new Pet("Jiggy", "Pug");
 Pet Runty = new Pet("Runty", "outdoor cat");
 Pet Enzo = new Pet("Enzo", "tiger");
 
-firstShelter.AddPet(Lottie);
-firstShelter.AddPet(Blue);
-firstShelter.AddPet(Lulu);
-firstShelter.AddPet(Pushkins);
-firstShelter.AddPet(Bibble);
-
 secondShelter.AddPet(Mitsy);
 secondShelter.AddPet(Murphy);
 secondShelter.AddPet(Jiggy);
 secondShelter.AddPet(Runty);
 secondShelter.AddPet(Enzo);
+#endregion
 
-//Main
+#region Main
 while (!exit)
 {
     ShelterMenu();
 
-    int menuOption = StartMenu();
-
-    switch (menuOption)
+    while (!exit)
     {
-        case 1:
-            Console.Clear();
-            Console.WriteLine("----- All Pets -----\n");
-            firstShelter.ShowAllPets();
-            MenuOrExit();
-            break;
-        case 2:
-            CreateNewPet();
-            MenuOrExit();
-            break;
-        case 3:
-            FeedAPet();
-            MenuOrExit();
-            break;
-        case 4:
-            PlayWithPet();
-            MenuOrExit();
-            break;
-        case 5:
-            AdoptAPet();
-            MenuOrExit();
-            break;
-        case 6:
-            Exit();
-            break;
+        int menuOption = StartMenu();
+
+        switch (menuOption)
+        {
+            case 1:
+                Console.Clear();
+                Console.WriteLine("----- All Pets -----\n");
+                shelterSelection.ShowAllPets();
+                MenuOrExit();
+                break;
+            case 2:
+                CreateNewPet();
+                MenuOrExit();
+                break;
+            case 3:
+                FeedAPet();
+                MenuOrExit();
+                break;
+            case 4:
+                PlayWithPet();
+                MenuOrExit();
+                break;
+            case 5:
+                AdoptAPet();
+                MenuOrExit();
+                break;
+            case 6:
+                Exit();
+                break;
+        }
     }
 }
+#endregion
 
-
-
-//functions
+#region functions
 
 void ShelterMenu()
 {
@@ -186,7 +193,7 @@ void CreateNewPet()
 
     Pet newPet = new Pet(newPetName, newPetSpecies);
 
-    firstShelter.AddPet(newPet);
+    shelterSelection.AddPet(newPet);
 
     Console.WriteLine($"{newPetName} has been added to the shelter");
 }
@@ -198,7 +205,7 @@ void FeedAPet()
     Console.WriteLine("Please enter the name of the pet you want to feed :");
     string petBeingFed = Console.ReadLine();
 
-    foreach (Pet pet in firstShelter.pets)
+    foreach (Pet pet in shelterSelection.pets)
     {
         if (petBeingFed?.Trim().ToLower() == pet.Name.Trim().ToLower())
         {
@@ -218,7 +225,7 @@ void PlayWithPet()
     Console.WriteLine("Please enter the name of the pet you want to play with :");
     string petHavingFun = Console.ReadLine();
 
-    foreach (Pet pet in firstShelter.pets)
+    foreach (Pet pet in shelterSelection.pets)
     {
         if (petHavingFun?.Trim().ToLower() == pet.Name.Trim().ToLower())
         {
@@ -238,13 +245,13 @@ void AdoptAPet()
     string petAdopting = Console.ReadLine();
     bool adoptomplete = false;
 
-    foreach (Pet pet in firstShelter.pets)
+    foreach (Pet pet in shelterSelection.pets)
     {
         if (petAdopting?.Trim().ToLower() == pet.Name.Trim().ToLower())
         {
             Console.WriteLine($"Congratualtions! You have adpoted {petAdopting}!");
 
-            firstShelter.pets.Remove(pet);
+            shelterSelection.pets.Remove(pet);
 
             break;
         }
@@ -256,3 +263,4 @@ void Exit()
 {
     exit = true;
 }
+#endregion
