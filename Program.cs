@@ -9,7 +9,7 @@ Shelter shelterSelection = firstShelter;
 
 
 #region firstShelter pets
-Pet Lottie = new Pet("Lottie", "King Charles Caveler");
+Dog Lottie = new Dog("Lottie", "Dog", 50, 50, "King Charles Caveler");
 Pet Blue = new Pet("Blue", "Huskey");
 Pet Lulu = new Pet("Lulu", "unknown");
 Pet Pushkins = new Pet("Pushkins", "indoor cat");
@@ -40,8 +40,9 @@ secondShelter.AddPet(Enzo);
 while (!exit)
 {
     ShelterMenu();
+    bool menu = true;
 
-    while (!exit)
+    while (menu)
     {
         int menuOption = StartMenu();
 
@@ -70,8 +71,13 @@ while (!exit)
                 MenuOrExit();
                 break;
             case 6:
+                menu = false;
+                break;
+            case 7:
+                menu = false;
                 Exit();
                 break;
+
         }
     }
 }
@@ -129,13 +135,14 @@ int StartMenu()
     Console.WriteLine("3. Feed a pet");
     Console.WriteLine("4. Play with a pet");
     Console.WriteLine("5. Adopt a pet");
-    Console.WriteLine("6. Exit");
+    Console.WriteLine("6. Shelter selection");
+    Console.WriteLine("7. Exit");
     Console.WriteLine();
 
     Console.WriteLine("Please pick an option using a number : ");
 
     string option = Console.ReadLine();
-    while (option != "1" && option != "2" && option != "3" && option != "4" && option != "5" && option != "6")
+    while (option != "1" && option != "2" && option != "3" && option != "4" && option != "5" && option != "6" && option != "7")
     {
         Console.WriteLine($"{option} is not valid, please enter 1, 2, 3, 4, 5 or 6");
         option = Console.ReadLine();
