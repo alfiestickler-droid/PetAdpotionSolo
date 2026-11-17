@@ -1,6 +1,4 @@
 ﻿using PetAdpotionSolo;
-using System.Xml.Linq;
-using System.Linq;
 
 bool exit = false;
 
@@ -42,6 +40,7 @@ while (!exit)
             MenuOrExit();
             break;
         case 5:
+            AdoptAPet();
             MenuOrExit();
             break;
         case 6:
@@ -145,7 +144,7 @@ void FeedAPet()
     Console.WriteLine("Please enter the name of the pet you want to feed :");
     string petBeingFed = Console.ReadLine();
 
-    foreach(Pet pet in firstShelter.pets)
+    foreach (Pet pet in firstShelter.pets)
     {
         if (petBeingFed?.Trim().ToLower() == pet.Name.Trim().ToLower())
         {
@@ -175,7 +174,25 @@ void PlayWithPet()
     }
 }
 
-//AdoptAPet
+void AdoptAPet()
+{
+    Console.WriteLine("Please enter the name of the pet you want to adopt : ");
+    string petAdopting = Console.ReadLine();
+    bool adoptomplete = false;
+
+    foreach (Pet pet in firstShelter.pets)
+    {
+        if (petAdopting?.Trim().ToLower() == pet.Name.Trim().ToLower())
+        {
+            Console.WriteLine($"Congratualtions! You have adpoted {petAdopting}!");
+
+            firstShelter.pets.Remove(pet);
+
+            break;
+        }
+    }
+    Console.WriteLine("Sorry we don't have a pet with that name.");
+}
 
 void Exit()
 {
