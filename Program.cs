@@ -9,9 +9,9 @@ Shelter shelterSelection = firstShelter;
 
 
 #region firstShelter pets
-Dog Lottie = new Dog("Lottie", "Dog", 50, 50, "King Charles Caveler");
-Pet Blue = new Pet("Blue", "Huskey");
-Pet Lulu = new Pet("Lulu", "unknown");
+Dog Lottie = new Dog("Lottie", "dog", 50, 50, "King Charles Caveler");
+Dog Blue = new Dog("Blue", "dog", 50, 50, "Huskey");
+Dog Lulu = new Dog("Lulu", "dog", 50, 50, "unknown");
 Pet Pushkins = new Pet("Pushkins", "indoor cat");
 Pet Bibble = new Pet("Bibble", "indoor cat");
 
@@ -23,9 +23,9 @@ firstShelter.AddPet(Bibble);
 #endregion
 
 #region secondShelter pets
-Pet Mitsy = new Pet("Mitsy", "Greyhound");
-Pet Murphy = new Pet("Murphy", "Labrador");
-Pet Jiggy = new Pet("Jiggy", "Pug");
+Dog Mitsy = new Dog("Mitsy", "dog", 50, 50, "Greyhound");
+Dog Murphy = new Dog("Murphy", "dog", 50, 50, "Labrador");
+Dog Jiggy = new Dog("Jiggy", "dog", 50, 50, "Pug");
 Pet Runty = new Pet("Runty", "outdoor cat");
 Pet Enzo = new Pet("Enzo", "tiger");
 
@@ -42,7 +42,7 @@ while (!exit)
     ShelterMenu();
     bool menu = true;
 
-    while (menu)
+    while (menu && !exit)
     {
         int menuOption = StartMenu();
 
@@ -180,9 +180,52 @@ void MenuOrExit()
 
 void CreateNewPet()
 {
+    bool newDog = false;
+    string userInputNDog = "";
+    string newDogBreed = "";
+    string newPetSpecies = "";
+
     Console.Clear();
     Console.WriteLine("----- Intake a Pet -----\n");
-    Console.WriteLine("Please enter pet's name :");
+
+    Console.WriteLine("Is the new pet a dog? y/n : ");
+    
+
+    while (userInputNDog.Trim().ToLower() != "n" && userInputNDog.Trim().ToLower() != "y")
+    {
+        userInputNDog = Console.ReadLine();
+
+        while (string.IsNullOrEmpty(userInputNDog))
+        {
+            Console.WriteLine("Nothing entered, please enter y if you're adding a dog or n for anyhing else");
+            userInputNDog = Console.ReadLine();
+        }
+        if (userInputNDog.Trim().ToLower() == "y")
+        {
+            newDog = true;
+        }
+        if (userInputNDog.Trim().ToLower() == "n")
+        {
+            newDog = false;
+        }
+        if (userInputNDog.Trim().ToLower() != "n" && userInputNDog.Trim().ToLower() != "y")
+        {
+            Console.WriteLine("invalid input please enter y if you are adding a dog or n for anything else.");
+        }
+    }
+
+    if (newDog == true)
+    { 
+        Console.WriteLine("Please enter dog breed");
+        newDogBreed = Console.ReadLine();
+        while (string.IsNullOrWhiteSpace(newDogBreed))
+        {
+            Console.WriteLine("Nothing entered, please enter breed for the new dog : ");
+            newDogBreed = Console.ReadLine();
+        }
+    }
+
+        Console.WriteLine("Please enter pet's name : ");
     string newPetName = Console.ReadLine();
     while (string.IsNullOrWhiteSpace(newPetName))
     {
@@ -190,19 +233,33 @@ void CreateNewPet()
         newPetName = Console.ReadLine();
     }
 
-    Console.WriteLine("Please enter pet's species");
-    string newPetSpecies = Console.ReadLine();
-    while (string.IsNullOrWhiteSpace(newPetSpecies))
+    if (!newDog)
     {
-        Console.WriteLine("Nothing entered, please enter name for the new pet : ");
+        Console.WriteLine("Please enter pet's species");
         newPetSpecies = Console.ReadLine();
+        while (string.IsNullOrWhiteSpace(newPetSpecies))
+        {
+            Console.WriteLine("Nothing entered, please enter name for the new pet : ");
+            newPetSpecies = Console.ReadLine();
+        }
     }
 
-    Pet newPet = new Pet(newPetName, newPetSpecies);
+    if(newDog == true)
+    {
+        Dog newDogFin = new Dog(newPetName, "dog", 50, 50, newDogBreed);
 
-    shelterSelection.AddPet(newPet);
+        shelterSelection.AddPet(newDogFin);
 
-    Console.WriteLine($"{newPetName} has been added to the shelter");
+        Console.WriteLine($"{newPetName} has been added to the {shelterSelection.Name}");
+    }
+    else
+    {
+        Pet newPet = new Pet(newPetName, newPetSpecies);
+
+        shelterSelection.AddPet(newPet);
+
+        Console.WriteLine($"{newPetName} has been added to the {shelterSelection.Name}");
+    } 
 }
 
 void FeedAPet()
