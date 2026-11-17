@@ -34,9 +34,11 @@ while (!exit)
             MenuOrExit();
             break;
         case 3:
+            FeedAPet();
             MenuOrExit();
             break;
         case 4:
+            PlayWithPet();
             MenuOrExit();
             break;
         case 5:
@@ -139,6 +141,7 @@ void CreateNewPet()
 
 void FeedAPet()
 {
+
     Console.WriteLine("Please enter the name of the pet you want to feed :");
     string petBeingFed = Console.ReadLine();
 
@@ -147,15 +150,30 @@ void FeedAPet()
         if (petBeingFed?.Trim().ToLower() == pet.Name.Trim().ToLower())
         {
             Console.WriteLine($"{petBeingFed} is now being fed");
-            
+            pet.Feed();
 
-            Console.WriteLine($"{petBeingFed}'s hunger")
+            Console.WriteLine($"{petBeingFed}'s hunger is now {pet.Hunger}");
         }
     }
 
 }
 
-//PlayWithPet
+void PlayWithPet()
+{
+    Console.WriteLine("Please enter the name of the pet you want to play with :");
+    string petHavingFun = Console.ReadLine();
+
+    foreach (Pet pet in firstShelter.pets)
+    {
+        if (petHavingFun?.Trim().ToLower() == pet.Name.Trim().ToLower())
+        {
+            Console.WriteLine($"You have played with {petHavingFun}");
+            pet.Play();
+
+            Console.WriteLine($"{petHavingFun}'s hunger is now {pet.Hunger} and happiness is {pet.Happiness}");
+        }
+    }
+}
 
 //AdoptAPet
 
