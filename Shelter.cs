@@ -2,7 +2,13 @@
 {
     class Shelter
     {
+        public string Name { get; set; }
         public List<Pet> pets = new List<Pet>();
+
+        public Shelter (string name)
+        {
+            Name = name;
+        }
 
         public void AddPet(Pet newPet)
         {

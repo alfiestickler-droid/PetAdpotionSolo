@@ -2,7 +2,10 @@
 
 bool exit = false;
 
-Shelter firstShelter = new Shelter();
+Shelter firstShelter = new Shelter("SunnyDale Shelter");
+Shelter secondShelter = new Shelter("Crazy animalz Shelter");
+
+Shelter shelterSelection = firstShelter;
 
 Pet Lottie = new Pet("Lottie", "King Charles Caveler");
 Pet Blue = new Pet("Blue", "Huskey");
@@ -10,15 +13,29 @@ Pet Lulu = new Pet("Lulu", "unknown");
 Pet Pushkins = new Pet("Pushkins", "indoor cat");
 Pet Bibble = new Pet("Bibble", "indoor cat");
 
+Pet Mitsy = new Pet("Mitsy", "Greyhound");
+Pet Murphy = new Pet("Murphy", "Labrador");
+Pet Jiggy = new Pet("Jiggy", "Pug");
+Pet Runty = new Pet("Runty", "outdoor cat");
+Pet Enzo = new Pet("Enzo", "tiger");
+
 firstShelter.AddPet(Lottie);
 firstShelter.AddPet(Blue);
 firstShelter.AddPet(Lulu);
 firstShelter.AddPet(Pushkins);
 firstShelter.AddPet(Bibble);
 
+secondShelter.AddPet(Mitsy);
+secondShelter.AddPet(Murphy);
+secondShelter.AddPet(Jiggy);
+secondShelter.AddPet(Runty);
+secondShelter.AddPet(Enzo);
+
 //Main
 while (!exit)
 {
+    ShelterMenu();
+
     int menuOption = StartMenu();
 
     switch (menuOption)
@@ -55,13 +72,51 @@ while (!exit)
 
 //functions
 
+void ShelterMenu()
+{
+
+    Console.Clear();
+    Console.WriteLine("---------- Welcome to my animal shelters ----------");
+    Console.WriteLine();
+
+    Console.WriteLine("----- Shelter Selection Menu -----");
+    Console.WriteLine($"1. {firstShelter.Name}");
+    Console.WriteLine($"2. {secondShelter.Name}");
+    Console.WriteLine("3. Exit");
+
+    Console.WriteLine("Select which shelter you would like to visit using the numbers");
+
+    string option = Console.ReadLine();
+    while (option != "1" && option != "2" && option != "3")
+    {
+        Console.WriteLine($"{option} is not valid, please enter 1 or 2");
+        option = Console.ReadLine();
+    }
+
+    int optionInt = int.Parse(option);
+
+    switch (optionInt)
+    {
+        case 1:
+            shelterSelection = firstShelter;
+            break;
+
+        case 2:
+            shelterSelection = secondShelter;
+            break;
+        case 3:
+            exit = true;
+            break;
+    }
+}
+
 int StartMenu()
 {
     Console.Clear();
-    Console.WriteLine("---------- Welcome to the my animal shelter ----------");
+    Console.WriteLine($"---------- Welcome to {shelterSelection.Name} ----------");
     Console.WriteLine();
 
-    Console.WriteLine("----- Menu -----");
+    Console.WriteLine($"----- Menu -----");
     Console.WriteLine("1. View all pets");
     Console.WriteLine("2. Intake an new pet");
     Console.WriteLine("3. Feed a pet");
