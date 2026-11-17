@@ -24,6 +24,8 @@ while (!exit)
     switch (menuOption)
     {
         case 1:
+            Console.Clear();
+            Console.WriteLine("----- All Pets -----\n");
             firstShelter.ShowAllPets();
             MenuOrExit();
             break;
@@ -88,11 +90,7 @@ void MenuOrExit()
     string userOption = Console.ReadLine();
     userOption.ToLower().Trim();
 
-    if (userOption == "menu")
-    {
-        StartMenu();
-    }
-    else if (userOption == "exit")
+    if (userOption == "exit")
     {
         exit = true;
     }
@@ -104,11 +102,7 @@ void MenuOrExit()
             userOption = Console.ReadLine();
         }
 
-        if (userOption == "menu")
-        {
-            StartMenu();
-        }
-        else
+        if (userOption == "exit")
         {
             exit = true;
         }
@@ -117,6 +111,8 @@ void MenuOrExit()
 
 void CreateNewPet()
 {
+    Console.Clear();
+    Console.WriteLine("----- Intake a Pet -----\n");
     Console.WriteLine("Please enter pet's name :");
     string newPetName = Console.ReadLine();
     while (string.IsNullOrWhiteSpace(newPetName))
@@ -136,11 +132,14 @@ void CreateNewPet()
     Pet newPet = new Pet(newPetName, newPetSpecies);
 
     firstShelter.AddPet(newPet);
+
+    Console.WriteLine($"{newPetName} has been added to the shelter");
 }
 
 void FeedAPet()
 {
-
+    Console.Clear();
+    Console.WriteLine("----- Feed a Pet -----\n");
     Console.WriteLine("Please enter the name of the pet you want to feed :");
     string petBeingFed = Console.ReadLine();
 
@@ -159,6 +158,8 @@ void FeedAPet()
 
 void PlayWithPet()
 {
+    Console.Clear();
+    Console.WriteLine("----- Play With Pet -----\n");
     Console.WriteLine("Please enter the name of the pet you want to play with :");
     string petHavingFun = Console.ReadLine();
 
@@ -176,6 +177,8 @@ void PlayWithPet()
 
 void AdoptAPet()
 {
+    Console.Clear();
+    Console.WriteLine("----- Adpot a Pet -----\n");
     Console.WriteLine("Please enter the name of the pet you want to adopt : ");
     string petAdopting = Console.ReadLine();
     bool adoptomplete = false;
